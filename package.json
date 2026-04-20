@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "tsx": "^4.21.0"
+  },
+  "name": "CSD204 A2 Code", 
+  "version": "1.0.0", 
+  "description": "Design implementation code for CSD204 A2", 
+  "type": "module", 
+  "scripts": { 
+    "test": "tsx --test" 
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0"
+  }
+}
