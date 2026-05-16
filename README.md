@@ -1,6 +1,6 @@
 # CSD204A2 Code
 
-HRBRS (Hospital Room Booking and Reporting System) is a console application written
+The Hospital Room Booking and Reporting System (HRBRS) is a console application written
 in TypeScript for a programming assignment.
 
 Main functionailty of the HRBRS:
