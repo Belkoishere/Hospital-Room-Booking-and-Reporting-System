@@ -24,6 +24,6 @@ Reporting
 - Room occupancy report
 
 Structure of HRBRS
-The structure of this application is based on a UML class diagram (in documentation folder) 
+The structure of this application is based on a UML class diagram (in design folder) 
 that I created which implements appropraite design patterns to ensure the readability,
 maintainability and extensibility of the codebase.
