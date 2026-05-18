@@ -1,5 +1,5 @@
 export enum Status {
-    Occupied,
-    Available,
-    OutOfService
+    "Occupied",
+    "Available",
+    "OutOfService"
 }

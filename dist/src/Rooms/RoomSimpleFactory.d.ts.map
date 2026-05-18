@@ -1,0 +1,1 @@
+{"version":3,"file":"RoomSimpleFactory.d.ts","sourceRoot":"","sources":["../../../src/Rooms/RoomSimpleFactory.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,YAAY,CAAC;AAKlC,OAAO,KAAK,EAAE,UAAU,EAAE,MAAM,iBAAiB,CAAC;AAGlD,qBAAa,iBAAiB;IAC1B,MAAM,CAAC,OAAO,CAAC,IAAI,EAAE,MAAM,EAAE,UAAU,EAAE,UAAU,GAAG,IAAI;CAe7D"}
