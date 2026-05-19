@@ -4,13 +4,13 @@ import { AverageStayReport } from "./AverageStayReport.js";
 import { AvailableRoomsReport } from "./AvailableRoomsReport.js";
 import { PatientNumbersReport } from "./PatientNumbersReport.js";
 import { Report } from "./Report.js";
-export class ReportFactory {
+export class ReportSimpleFactory {
     static CreateReport(request, context) {
         switch (request.GetReportType()) {
             case "RoomOccupancy":
                 return new RoomOccupancyReport(context.roomService);
             case "AverageStay":
-                return new AverageStayReport(context.bookingService);
+                return new AverageStayReport(context[0].bookingService, context[1].roomService);
             case "AvailableRooms":
                 return new AvailableRoomsReport(context.roomService);
             case "PatientNumbers":

@@ -1,6 +1,6 @@
 import { RoomService } from "../Services/RoomService.js";
-export declare class PatientContext {
-    readonly patientService: RoomService;
-    constructor(patientService: RoomService);
+export declare class RoomContext {
+    readonly roomService: RoomService;
+    constructor(roomService: RoomService);
 }
 //# sourceMappingURL=RoomContext.d.ts.map

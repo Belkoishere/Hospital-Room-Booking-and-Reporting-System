@@ -19,7 +19,7 @@ export class RoomSimpleFactory {
             case "wardbay":
                 return new WardBay(RoomConfig);
             default:
-                throw new Error(`Unknown shape type: ${type}`);
+                throw new Error(`Unknown room type: ${type}`);
         }
     }
 }

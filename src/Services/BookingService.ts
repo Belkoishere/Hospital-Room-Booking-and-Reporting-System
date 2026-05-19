@@ -15,7 +15,11 @@ export class BookingService {
     const roomID = booking.RoomID;
     const patientID = booking.PatientID;
 
-	  //Check if booking is valid before booking room
+	  //Perform sanity checks before booking room to prevent instances such as
+    //double bookings
+    //booking of unavailable rooms
+    //booking of unsuitable rooms
+
     if (
       this.rservice.FindRoom(roomID) === null ||
       this.pservice.FindPatient(patientID) === null ||

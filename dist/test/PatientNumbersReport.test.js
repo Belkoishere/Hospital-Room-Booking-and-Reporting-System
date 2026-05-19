@@ -1,4 +1,4 @@
-import { ReportFactory } from "../src/Reports/ReportSimpleFactory.js";
+import { ReportSimpleFactory } from "../src/Reports/ReportSimpleFactory.js";
 import { ReportRequest } from "../src/Reports/ReportRequest.js";
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -18,7 +18,7 @@ test("Patient numbers report generates results correctly", () => {
     const context = new PatientContext(service);
     const params = new Map([["Type", "Current"]]);
     const request = new ReportRequest("PatientNumbers", params);
-    const report = ReportFactory.CreateReport(request, context);
+    const report = ReportSimpleFactory.CreateReport(request, context);
     const result = report.GenerateReport(request);
     assert.strictEqual(result, 2);
 });

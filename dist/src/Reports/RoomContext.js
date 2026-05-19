@@ -1,7 +1,7 @@
 import { RoomService } from "../Services/RoomService.js";
-export class PatientContext {
-    constructor(patientService) {
-        this.patientService = patientService;
+export class RoomContext {
+    constructor(roomService) {
+        this.roomService = roomService;
     }
 }
 //# sourceMappingURL=RoomContext.js.map

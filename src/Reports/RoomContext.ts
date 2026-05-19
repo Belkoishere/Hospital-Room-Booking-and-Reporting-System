@@ -1,7 +1,7 @@
 import { RoomService } from "../Services/RoomService.js";
 
-export class PatientContext {
+export class RoomContext {
   constructor(
-    public readonly patientService: RoomService,
+    public readonly roomService: RoomService,
   ) {}
 }

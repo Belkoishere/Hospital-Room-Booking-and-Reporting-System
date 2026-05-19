@@ -1,6 +1,6 @@
 import { BookingService } from "../Services/BookingService.js";
-export declare class PatientContext {
-    readonly patientService: BookingService;
-    constructor(patientService: BookingService);
+export declare class BookingContext {
+    readonly bookingService: BookingService;
+    constructor(bookingService: BookingService);
 }
 //# sourceMappingURL=BookingContext.d.ts.map

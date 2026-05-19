@@ -1,5 +1,6 @@
 import { Report } from "./Report.js";
 import { RoomService } from "../Services/RoomService.js";
+import { Status } from "../Enumerations/Status.js";
 export class RoomOccupancyReport extends Report {
     constructor(rservice) {
         super();
@@ -7,7 +8,21 @@ export class RoomOccupancyReport extends Report {
     }
     run(params) {
         const type = params.get("Type");
-        return 45;
+        const AllRooms = this.rservice.AllRooms();
+        if (type === "All") {
+            const occupied = AllRooms.filter(r => r.Status === Status["Occupied"]).length;
+            const all = AllRooms.length;
+            if (all != 0) {
+                return Number(((occupied / all) * 100).toFixed(2));
+            }
+            return null;
+        }
+        const occupied = AllRooms.filter(r => r.GetType() === type && r.Status === Status["Occupied"]).length;
+        const all = AllRooms.length;
+        if (all != 0) {
+            return Number(((occupied / all) * 100).toFixed(2));
+        }
+        return null;
     }
 }
 //# sourceMappingURL=RoomOccupancyReport.js.map
