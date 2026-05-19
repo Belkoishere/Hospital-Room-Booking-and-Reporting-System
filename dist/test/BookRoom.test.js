@@ -18,7 +18,7 @@ const room = RoomSimpleFactory.AddRoom("WardBay", { RoomID: 1,
     EquipmentList: [Equipment["Bed"], Equipment["Defibrilator"], Equipment["IVPole"]],
     DailyCost: 23,
     Status: Status["Available"] });
-const patient = new Patient(1, "Belko Diallo", new Date("21/02/2006"), new Date("17/05/2026"), 23, [Equipment["Bed"], Equipment["Defibrilator"]]);
+const patient = new Patient(1, "Belko Diallo", new Date("21/02/2006"), new Date("17/05/2026"), null, 23, [Equipment["Bed"], Equipment["Defibrilator"]]);
 const booking = new Booking(1, 1, 1, new Date("18/05/2026"), null);
 // The biz level logic - repo is passed in to service (DIP)
 const pservice = new PatientService(prepo);

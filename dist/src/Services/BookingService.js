@@ -9,16 +9,32 @@ export class BookingService {
         const bookingID = booking.BookingID;
         const roomID = booking.RoomID;
         const patientID = booking.PatientID;
+        //Check if booking is valid before booking room
         if (this.rservice.FindRoom(roomID) === null ||
             this.pservice.FindPatient(patientID) === null ||
             this.rservice.IsAvailable(roomID) === false ||
             this.FindByBookingID(bookingID) !== null ||
-            this.FindByPatientID(patientID) !== null ||
-            this.FindByRoomID(roomID) !== null ||
+            //Check if patient already has an active booking
+            this.ActiveBookingByPatientID(patientID) === true ||
+            this.ActiveBookingByRoomID(roomID) === true ||
             this.IsSuitable(roomID, patientID) === false) {
             return null;
         }
         this.bookingRepo.save(booking);
+    }
+    ActiveBookingByPatientID(patientID) {
+        const booking = this.FindByPatientID(patientID);
+        if (!booking) {
+            return false;
+        }
+        return booking.EndDate === null;
+    }
+    ActiveBookingByRoomID(roomID) {
+        const booking = this.FindByRoomID(roomID);
+        if (!booking) {
+            return false;
+        }
+        return booking.EndDate !== null;
     }
     FindByBookingID(bookingID) {
         return this.bookingRepo.readByBookingID(bookingID);
@@ -43,14 +59,22 @@ export class BookingService {
     RemoveAllBookings() {
         this.bookingRepo.deleteAll();
     }
+    RemoveBooking(BookingID) {
+        this.bookingRepo.delete(BookingID);
+    }
     CancelBooking(bookingID) {
-        // implement if needed
     }
     EndBooking(bookingID) {
-        // implement if needed
+        this.bookingRepo.updateEndDate(bookingID, new Date());
     }
     MovePatient(patientID, roomID) {
-        // implement if needed
+        const currentBooking = this.FindByPatientID(patientID);
+        if (!currentBooking) {
+            return null;
+        }
+        this.EndBooking(currentBooking.BookingID);
+        const newBooking = new Booking(this.bookingRepo.uniqueID(), patientID, roomID, new Date(), null);
+        return this.BookRoom(newBooking);
     }
 }
 //# sourceMappingURL=BookingService.js.map

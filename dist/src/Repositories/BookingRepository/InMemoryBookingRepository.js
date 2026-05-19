@@ -18,7 +18,7 @@ export class InMemoryBookingRepository {
         return Booking ?? null;
     }
     save(Booking) {
-        this.Bookings.set(Booking.PatientID, Booking);
+        this.Bookings.set(Booking.BookingID, Booking);
     }
     all() {
         return [...this.Bookings.values()];
@@ -30,6 +30,24 @@ export class InMemoryBookingRepository {
         this.Bookings.clear();
     }
     updateStatus(BookingID, Status) {
+    }
+    updateEndDate(BookingID, EndDate) {
+        let Booking = this.readByBookingID(BookingID);
+        if (!Booking) {
+            return null;
+        }
+        else {
+            let NewBooking = Booking;
+            NewBooking.EndDate = EndDate;
+            this.Bookings.set(BookingID, NewBooking);
+        }
+    }
+    uniqueID() {
+        let LastID = [...this.Bookings.keys()].pop();
+        if (!LastID) {
+            return 1;
+        }
+        return LastID + 1;
     }
 }
 //# sourceMappingURL=InMemoryBookingRepository.js.map

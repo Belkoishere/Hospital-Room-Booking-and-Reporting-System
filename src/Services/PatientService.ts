@@ -13,7 +13,7 @@ export class PatientService {
   }
 
   RemovePatient(PatientID: number): void {
-    return this.repo.delete(PatientID);
+    this.repo.delete(PatientID);
   }
 
   All(): Patient[]{

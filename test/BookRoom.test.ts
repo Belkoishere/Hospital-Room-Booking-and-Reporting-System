@@ -27,7 +27,8 @@ const patient = new Patient(
 1, 
 "Belko Diallo", 
 new Date("21/02/2006"), 
-new Date("17/05/2026"), 
+new Date("17/05/2026"),
+null, 
 23, 
 [Equipment["Bed"], Equipment["Defibrilator"]]);
 

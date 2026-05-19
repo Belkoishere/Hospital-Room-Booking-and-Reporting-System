@@ -5,7 +5,6 @@ import { InMemoryPatientRepository } from "../src/Repositories/PatientRepository
 import { PatientService } from "../src/Services/PatientService.js";
 import { Patient } from "../src/Patients/Patient.js";
 
-
 test("Patients are instantiated and stored correctly", () => {
     
     // Could easily change repo for example to CsvStudentRepository("students.csv")
@@ -15,6 +14,7 @@ test("Patients are instantiated and stored correctly", () => {
     (1, "Belko Diallo", 
     new Date("21/02/2006"),
     new Date("16/05/2026"),
+    null,
     5,
     [Equipment["Bed"], Equipment["InfusionPump"]]); 
 
@@ -27,4 +27,5 @@ test("Patients are instantiated and stored correctly", () => {
     assert.strictEqual(patient1.Name, "Belko Diallo");   
     assert.strictEqual(FindPatient1?.Name, "Belko Diallo");
     assert.strictEqual(FindPatient1?.PatientID, 1);
+    assert.strictEqual(service.All().length, 1);
 });

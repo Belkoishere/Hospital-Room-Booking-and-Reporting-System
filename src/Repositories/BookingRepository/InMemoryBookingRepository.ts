@@ -24,7 +24,7 @@ export class InMemoryBookingRepository implements BookingRepositoryStrategy {
   }
 
   save(Booking: Booking): void {
-    this.Bookings.set(Booking.PatientID, Booking);
+    this.Bookings.set(Booking.BookingID, Booking);
   }
 
   all(): Booking[] {
@@ -41,6 +41,30 @@ export class InMemoryBookingRepository implements BookingRepositoryStrategy {
 
   updateStatus(BookingID: number, Status: Status): void {
 
+  }
+
+  updateEndDate(BookingID: number, EndDate: Date): void | null {
+    let Booking = this.readByBookingID(BookingID);
+
+    if(!Booking){
+      return null;
+    }
+    else {
+      let NewBooking = Booking;
+      NewBooking.EndDate = EndDate;
+      this.Bookings.set(BookingID, NewBooking);
+    }
+    
+  }
+
+  uniqueID(): number {
+    let LastID = [...this.Bookings.keys()].pop();
+
+    if (!LastID){
+      return 1;
+    }
+
+    return LastID + 1;
   }
 
 }

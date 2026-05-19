@@ -11,5 +11,7 @@ export declare class InMemoryBookingRepository implements BookingRepositoryStrat
     delete(BookingID: number): void;
     deleteAll(): void;
     updateStatus(BookingID: number, Status: Status): void;
+    updateEndDate(BookingID: number, EndDate: Date): void | null;
+    uniqueID(): number;
 }
 //# sourceMappingURL=InMemoryBookingRepository.d.ts.map

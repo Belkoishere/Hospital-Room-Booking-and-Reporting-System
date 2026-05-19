@@ -15,19 +15,41 @@ export class BookingService {
     const roomID = booking.RoomID;
     const patientID = booking.PatientID;
 
+	  //Check if booking is valid before booking room
     if (
       this.rservice.FindRoom(roomID) === null ||
       this.pservice.FindPatient(patientID) === null ||
       this.rservice.IsAvailable(roomID) === false ||
       this.FindByBookingID(bookingID) !== null ||
-      this.FindByPatientID(patientID) !== null ||
-      this.FindByRoomID(roomID) !== null ||
+      //Check if patient already has an active booking
+      this.ActiveBookingByPatientID(patientID) === true ||
+      this.ActiveBookingByRoomID(roomID) === true ||
       this.IsSuitable(roomID, patientID) === false
     ) {
       return null;
     }
 
     this.bookingRepo.save(booking);
+  }
+
+  ActiveBookingByPatientID(patientID: number): boolean {
+    const booking = this.FindByPatientID(patientID);
+
+    if (!booking) {
+      return false;
+    }
+
+    return booking.EndDate === null;
+  }
+
+  ActiveBookingByRoomID(roomID: number): boolean {
+    const booking = this.FindByRoomID(roomID);
+
+    if (!booking) {
+      return false;
+    }
+
+    return booking.EndDate !== null;
   }
 
   FindByBookingID(bookingID: number): Booking | null {
@@ -66,15 +88,35 @@ export class BookingService {
     this.bookingRepo.deleteAll();
   }
 
+  RemoveBooking(BookingID: number): void {
+	this.bookingRepo.delete(BookingID)
+  }
+
   CancelBooking(bookingID: number): void {
-    // implement if needed
+    
   }
 
   EndBooking(bookingID: number): void {
-    // implement if needed
+    this.bookingRepo.updateEndDate(bookingID, new Date());
   }
 
-  MovePatient(patientID: number, roomID: number): void {
-    // implement if needed
+  MovePatient(patientID: number, roomID: number): void | null {
+    const currentBooking = this.FindByPatientID(patientID);
+
+    if (!currentBooking) {
+      return null;
+    }
+
+    this.EndBooking(currentBooking.BookingID);
+
+    const newBooking = new Booking(
+      this.bookingRepo.uniqueID(),
+      patientID,
+      roomID,
+      new Date(),
+      null
+    );
+
+    return this.BookRoom(newBooking);
   }
 }

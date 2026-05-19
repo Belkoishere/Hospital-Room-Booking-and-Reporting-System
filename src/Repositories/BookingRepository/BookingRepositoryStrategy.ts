@@ -11,4 +11,6 @@ export interface BookingRepositoryStrategy {
   delete(BookingID: number): void;
   deleteAll(): void;
   updateStatus(BookingID: number, Status: Status): void;
+  updateEndDate(BookingID: number, EndDate: Date): void;
+  uniqueID(): number;
 }

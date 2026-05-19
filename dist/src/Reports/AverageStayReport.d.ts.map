@@ -1,1 +1,1 @@
-{"version":3,"file":"AverageStayReport.d.ts","sourceRoot":"","sources":["../../../src/Reports/AverageStayReport.ts"],"names":[],"mappings":""}
+{"version":3,"file":"AverageStayReport.d.ts","sourceRoot":"","sources":["../../../src/Reports/AverageStayReport.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,aAAa,CAAC;AACrC,OAAO,EAAE,cAAc,EAAE,MAAM,+BAA+B,CAAC;AAE/D,qBAAa,iBAAkB,SAAQ,MAAM;IAC/B,OAAO,CAAC,QAAQ,CAAC,QAAQ;gBAAR,QAAQ,EAAE,cAAc;IAIrD,SAAS,CAAC,GAAG,CAAC,MAAM,EAAE,GAAG,CAAC,MAAM,EAAE,GAAG,CAAC,GAAG,MAAM,GAAG,IAAI;CAMvD"}

@@ -10,7 +10,7 @@ export class PatientService {
         return this.repo.read(PatientID);
     }
     RemovePatient(PatientID) {
-        return this.repo.delete(PatientID);
+        this.repo.delete(PatientID);
     }
     All() {
         return this.repo.all();
