@@ -28,7 +28,9 @@ test("Rooms are instantiated and stored correctly", () => {
     service.AddRoom(room1);
     service.AddRoom(room2);
     service.AddRoom(room3);
+    // Rooms cannot be double added
     assert.strictEqual(service.AddRoom(room3), "Room cannot be added");
+    // Two rooms are successfully added
     assert.deepStrictEqual(service.AllRooms(), [
         new ICUBay({ RoomID: 1,
             EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],

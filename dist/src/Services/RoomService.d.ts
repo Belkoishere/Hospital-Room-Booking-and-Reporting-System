@@ -9,7 +9,7 @@ export declare class RoomService {
     FindRoom(RoomID: number): Room | null;
     IsAvailable(RoomID: number): Boolean | string;
     AllRooms(): Room[];
-    UpdateStatus(RoomID: number, Status: Status): void;
+    UpdateStatus(RoomID: number, NewStatus: Status): void;
     RemoveAllRooms(): void;
 }
 //# sourceMappingURL=RoomService.d.ts.map

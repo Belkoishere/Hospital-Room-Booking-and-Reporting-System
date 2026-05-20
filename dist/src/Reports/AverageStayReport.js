@@ -21,7 +21,7 @@ export class AverageStayReport extends Report {
                     TotalStay += diffDays;
                 }
             });
-            return Number((TotalStay / CompletedBookings.length).toFixed(2));
+            return Number((TotalStay / CompletedBookings.length).toFixed());
         }
         const CompletedBookings = AllBookings.filter(b => b.EndDate !== null
             && this.rservice.FindRoom(b.RoomID)?.GetType() === type);
@@ -32,11 +32,10 @@ export class AverageStayReport extends Report {
                 TotalStay += diffDays;
             }
         });
-        return Number((TotalStay / CompletedBookings.length).toFixed(2));
+        return Number((TotalStay / CompletedBookings.length).toFixed());
     }
     dateDiffInDays(a, b) {
         const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-        // Discard the time and time-zone information.
         if (a != null) {
             const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
             const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());

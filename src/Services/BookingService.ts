@@ -2,6 +2,7 @@ import type { BookingRepositoryStrategy } from "../Repositories/BookingRepositor
 import type { PatientService } from "./PatientService.js";
 import type { RoomService } from "./RoomService.js";
 import { Booking } from "../Bookings/Booking.js";
+import { Status } from "../Enumerations/Status.js";
 
 export class BookingService {
   constructor(
@@ -34,6 +35,7 @@ export class BookingService {
     }
 
     this.bookingRepo.save(booking);
+    this.rservice.UpdateStatus(bookingID, Status["Occupied"]);
     
   }
 
@@ -123,6 +125,7 @@ export class BookingService {
     }
 
     this.EndBooking(currentBooking.BookingID);
+    this.rservice.UpdateStatus(currentBooking.BookingID, Status["Available"]);
 
     const newBooking = new Booking(
       this.bookingRepo.uniqueID(),

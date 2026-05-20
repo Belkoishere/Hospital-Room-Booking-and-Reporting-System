@@ -1,4 +1,5 @@
 import { Room } from "../../Rooms/Rooms.js";
+import { Status } from "../../Enumerations/Status.js";
 
 // StudentRepository.ts
 export interface RoomRepositoryStrategy {
@@ -7,5 +8,5 @@ export interface RoomRepositoryStrategy {
   all(): Room[];
   delete(RoomID: number): void;
   deleteAll(): void;
-  update(): void;
+  updateStatus(RoomID: number, NewStatus: Status): void;
 }

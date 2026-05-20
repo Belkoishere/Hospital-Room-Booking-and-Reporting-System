@@ -11,7 +11,6 @@ import { PatientContext } from "../src/Reports/PatientContext.js";
 
 test("Patient numbers report generates results correctly", () => {
     
-    // Could easily change repo for example to CsvStudentRepository("students.csv")
     const repo = new InMemoryPatientRepository();  
 
     let patient1 = new Patient
@@ -43,6 +42,7 @@ test("Patient numbers report generates results correctly", () => {
     const report = ReportSimpleFactory.CreateReport(request, context);
     const result = report.GenerateReport(request);
 
+    // 2 patients are counted
     assert.strictEqual(result, 2);
     
 });

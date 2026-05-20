@@ -1,4 +1,5 @@
 import { Booking } from "../Bookings/Booking.js";
+import { Status } from "../Enumerations/Status.js";
 export class BookingService {
     constructor(bookingRepo, pservice, rservice) {
         this.bookingRepo = bookingRepo;
@@ -24,6 +25,7 @@ export class BookingService {
             return "Can't book room";
         }
         this.bookingRepo.save(booking);
+        this.rservice.UpdateStatus(bookingID, Status["Occupied"]);
     }
     ActiveBookingByPatientID(patientID) {
         const booking = this.FindByPatientID(patientID);
@@ -85,6 +87,7 @@ export class BookingService {
             return "Patient is already booked into this room";
         }
         this.EndBooking(currentBooking.BookingID);
+        this.rservice.UpdateStatus(currentBooking.BookingID, Status["Available"]);
         const newBooking = new Booking(this.bookingRepo.uniqueID(), patientID, roomID, new Date(), null);
         this.BookRoom(newBooking);
     }

@@ -14,7 +14,6 @@ import { ICUBay } from "../src/Rooms/Rooms.js";
 
 test("Available rooms report generates results correctly", () => {
     
-    // Could easily change repo for example to CsvStudentRepository("students.csv")
     const repo = new InMemoryRoomRepository();  
 
     const room1 = RoomSimpleFactory.AddRoom(
@@ -44,6 +43,7 @@ test("Available rooms report generates results correctly", () => {
     const report = ReportSimpleFactory.CreateReport(request, context);
     const result = report.GenerateReport(request);
 
+    // 1 available room is returned
     assert.deepStrictEqual(result, [
     new ICUBay({
         RoomID: 23,

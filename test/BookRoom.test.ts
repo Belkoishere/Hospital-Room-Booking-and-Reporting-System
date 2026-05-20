@@ -85,6 +85,13 @@ test("Room booking works correctly", () => {
     null
     ); 
 
+    //Booking with non existent room and patient
+    const booking5 = new Booking
+    (4, 4, 4,
+    new Date("2026-05-18"),
+    null
+    ); 
+
     const pservice = new PatientService(prepo);
     const rservice = new RoomService(rrepo);
     const bservice = new BookingService(brepo, pservice, rservice);
@@ -93,6 +100,7 @@ test("Room booking works correctly", () => {
     pservice.RegisterPatient(patient2);
     rservice.AddRoom(room1);
     rservice.AddRoom(room2);
+    rservice.AddRoom(room3);
     bservice.BookRoom(booking1);
 
     //booking2 cannot be booked as an identical booking1 was already booked
@@ -103,6 +111,10 @@ test("Room booking works correctly", () => {
     assert.deepStrictEqual(bservice.All(), [new Booking(1, 1, 1, new Date("2026-05-18"), null)]);
     //booking 4 cannot be booked as it involves a patient who already has a booking
     assert.strictEqual(bservice.BookRoom(booking4), "Can't book room");
+    //When rooms are booked their status is changed to "Occupied" (0)
+    assert.strictEqual(rservice.FindRoom(1)?.Status, 0);
+    //Booking with non existent room and patient cannot be booked
+    assert.strictEqual(bservice.BookRoom(booking5), "Can't book room");
 
 });
 

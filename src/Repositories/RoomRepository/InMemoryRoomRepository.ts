@@ -1,5 +1,6 @@
 import type { RoomRepositoryStrategy } from "./RoomRepositoryStrategy.js";
 import { Room } from "../../Rooms/Rooms.js";
+import type { Status } from "../../Enumerations/Status.js";
 
 export class InMemoryRoomRepository implements RoomRepositoryStrategy {
   private readonly Rooms = new Map<number, Room>();
@@ -24,8 +25,17 @@ export class InMemoryRoomRepository implements RoomRepositoryStrategy {
     this.Rooms.clear();
   }
 
-  update(): void {
+  updateStatus(RoomID: number, NewStatus: Status): void | string {
+    let Room = this.read(RoomID);
 
+    if(!Room){
+      return "Room does not exist";
+    }
+    else {
+      let NewRoom = Room;
+      NewRoom.Status = NewStatus;
+      this.Rooms.set(RoomID, NewRoom);
+    }
   }
 
 }

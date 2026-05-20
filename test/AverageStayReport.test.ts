@@ -67,12 +67,10 @@ test("Average stay report generates correct results", () => {
     const booking2 = new Booking(2, 2, 2, new Date("2025-09-01"), new Date("2026-03-03"));
     const booking3 = new Booking(3, 3, 3, new Date("2025-10-01"), new Date("2026-02-01"));
 
-    // Could easily change repo for example to CsvStudentRepository("students.csv")
     const rrepo = new InMemoryRoomRepository();
     const prepo = new InMemoryPatientRepository();
     const brepo = new InMemoryBookingRepository();  
 
-    // The biz level logic - repo is passed in to service (DIP)
     const rservice = new RoomService(rrepo);
     const pservice = new PatientService(prepo);
     const bservice = new BookingService(brepo, pservice, rservice);
@@ -98,6 +96,7 @@ test("Average stay report generates correct results", () => {
 
     const report = ReportSimpleFactory.CreateReport(request, [bcontext, rcontext]);
     const result = report.GenerateReport(request);
-
-    assert.strictEqual(result, 184.33);
+    
+    // Average room stay in days is calculated as 184 days
+    assert.strictEqual(result, 184);
 });

@@ -33,8 +33,12 @@ test("Patient is moved to a new room", () => {
     rservice.AddRoom(room2);
     bservice.BookRoom(booking);
     bservice.MovePatient(1, 2);
+    //A new booking is created with the new room
     assert.strictEqual(bservice.FindByBookingID(2)?.RoomID, 2);
     assert.strictEqual(bservice.FindByBookingID(1)?.RoomID, 1);
+    //The old room's status is changed to "Available" (1)
+    assert.strictEqual(rservice.FindRoom(1)?.Status, 1);
+    //The old booking's end date is set
     assert.notEqual(bservice.FindByBookingID(1)?.EndDate, null);
 });
 //# sourceMappingURL=MovePatient.test.js.map

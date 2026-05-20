@@ -18,7 +18,16 @@ export class InMemoryRoomRepository {
     deleteAll() {
         this.Rooms.clear();
     }
-    update() {
+    updateStatus(RoomID, NewStatus) {
+        let Room = this.read(RoomID);
+        if (!Room) {
+            return "Room does not exist";
+        }
+        else {
+            let NewRoom = Room;
+            NewRoom.Status = NewStatus;
+            this.Rooms.set(RoomID, NewRoom);
+        }
     }
 }
 //# sourceMappingURL=InMemoryRoomRepository.js.map

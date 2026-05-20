@@ -47,6 +47,7 @@ test("Room occupancy report generates results correctly", () => {
     const request = new ReportRequest("RoomOccupancy", params);
     const report = ReportSimpleFactory.CreateReport(request, context);
     const result = report.GenerateReport(request);
+    // 33.33% of rooms are occupied
     assert.strictEqual(result, 33.33);
 });
 //# sourceMappingURL=RoomOccupancyReport.test.js.map

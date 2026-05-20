@@ -29,8 +29,8 @@ export class RoomService {
     AllRooms() {
         return this.repo.all();
     }
-    UpdateStatus(RoomID, Status) {
-        return this.repo.update();
+    UpdateStatus(RoomID, NewStatus) {
+        return this.repo.updateStatus(RoomID, NewStatus);
     }
     RemoveAllRooms() {
         this.repo.deleteAll();

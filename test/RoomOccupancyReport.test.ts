@@ -68,14 +68,12 @@ test("Room occupancy report generates results correctly", () => {
     service.AddRoom(room6);
 
     const context = new RoomContext(service);
-
     const params = new Map<string, any>([["Type", "All"]]);
-
     const request = new ReportRequest("RoomOccupancy", params);
-
     const report = ReportSimpleFactory.CreateReport(request, context);
     const result = report.GenerateReport(request);
 
+    // 33.33% of rooms are occupied
     assert.strictEqual(result, 33.33);
 
 });

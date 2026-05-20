@@ -38,8 +38,8 @@ export class RoomService {
 		return this.repo.all();
 	}
 
-	UpdateStatus(RoomID: number, Status: Status): void{
-		return this.repo.update();
+	UpdateStatus(RoomID: number, NewStatus: Status): void{
+		return this.repo.updateStatus(RoomID, NewStatus);
 	}
 
 	RemoveAllRooms(): void{

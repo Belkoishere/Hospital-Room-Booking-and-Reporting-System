@@ -10,7 +10,6 @@ import { Status } from "../src/Enumerations/Status.js";
 import { RoomSimpleFactory } from "../src/Rooms/RoomSimpleFactory.js";
 import { ICUBay } from "../src/Rooms/Rooms.js";
 test("Available rooms report generates results correctly", () => {
-    // Could easily change repo for example to CsvStudentRepository("students.csv")
     const repo = new InMemoryRoomRepository();
     const room1 = RoomSimpleFactory.AddRoom("ICUBay", { RoomID: 23,
         EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
@@ -28,6 +27,7 @@ test("Available rooms report generates results correctly", () => {
     const request = new ReportRequest("AvailableRooms", params);
     const report = ReportSimpleFactory.CreateReport(request, context);
     const result = report.GenerateReport(request);
+    // 1 available room is returned
     assert.deepStrictEqual(result, [
         new ICUBay({
             RoomID: 23,
