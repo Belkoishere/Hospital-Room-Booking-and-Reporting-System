@@ -4,10 +4,10 @@ import { Status } from "../Enumerations/Status.js";
 export declare class RoomService {
     private readonly repo;
     constructor(repo: RoomRepositoryStrategy);
-    AddRoom(Room: Room): void;
+    AddRoom(Room: Room): void | string;
     RemoveRoom(RoomID: number): void;
     FindRoom(RoomID: number): Room | null;
-    IsAvailable(RoomID: number): Boolean;
+    IsAvailable(RoomID: number): Boolean | string;
     AllRooms(): Room[];
     UpdateStatus(RoomID: number, Status: Status): void;
     RemoveAllRooms(): void;

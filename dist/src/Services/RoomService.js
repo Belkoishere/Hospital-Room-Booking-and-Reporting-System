@@ -5,6 +5,9 @@ export class RoomService {
         this.repo = repo;
     }
     AddRoom(Room) {
+        if (this.FindRoom(Room.RoomID) !== null) {
+            return "Room cannot be added";
+        }
         this.repo.save(Room);
     }
     RemoveRoom(RoomID) {
@@ -14,12 +17,14 @@ export class RoomService {
         return this.repo.read(RoomID);
     }
     IsAvailable(RoomID) {
-        if (this.FindRoom(RoomID)?.Status == Status["Available"]) {
+        const status = this.FindRoom(RoomID)?.Status;
+        if (status === Status["Available"]) {
             return true;
         }
-        else {
-            return false;
+        else if (status === undefined) {
+            return "Room does not exist";
         }
+        return false;
     }
     AllRooms() {
         return this.repo.all();

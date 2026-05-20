@@ -42,4 +42,4 @@ test("Available rooms report generates results correctly", () => {
         }),
     ]);
 });
-//# sourceMappingURL=AvailableRooms.test.js.map
+//# sourceMappingURL=AvailableRoomsReport.test.js.map

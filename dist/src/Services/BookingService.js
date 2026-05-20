@@ -9,32 +9,41 @@ export class BookingService {
         const bookingID = booking.BookingID;
         const roomID = booking.RoomID;
         const patientID = booking.PatientID;
-        //Check if booking is valid before booking room
+        //Perform validation checks before booking room to prevent instances such as
+        //double bookings
+        //booking of unavailable rooms
+        //booking of unsuitable rooms
         if (this.rservice.FindRoom(roomID) === null ||
             this.pservice.FindPatient(patientID) === null ||
             this.rservice.IsAvailable(roomID) === false ||
             this.FindByBookingID(bookingID) !== null ||
             //Check if patient already has an active booking
-            this.ActiveBookingByPatientID(patientID) === true ||
-            this.ActiveBookingByRoomID(roomID) === true ||
+            this.ActiveBookingByPatientID(patientID) !== null ||
+            this.ActiveBookingByRoomID(roomID) !== null ||
             this.IsSuitable(roomID, patientID) === false) {
-            return null;
+            return "Can't book room";
         }
         this.bookingRepo.save(booking);
     }
     ActiveBookingByPatientID(patientID) {
         const booking = this.FindByPatientID(patientID);
         if (!booking) {
-            return false;
+            return null;
         }
-        return booking.EndDate === null;
+        else if (booking.EndDate === null) {
+            return booking;
+        }
+        return null;
     }
     ActiveBookingByRoomID(roomID) {
         const booking = this.FindByRoomID(roomID);
         if (!booking) {
-            return false;
+            return null;
         }
-        return booking.EndDate !== null;
+        else if (booking.EndDate === null) {
+            return booking;
+        }
+        return null;
     }
     FindByBookingID(bookingID) {
         return this.bookingRepo.readByBookingID(bookingID);
@@ -68,13 +77,16 @@ export class BookingService {
         this.bookingRepo.updateEndDate(bookingID, new Date());
     }
     MovePatient(patientID, roomID) {
-        const currentBooking = this.FindByPatientID(patientID);
+        const currentBooking = this.ActiveBookingByPatientID(patientID);
         if (!currentBooking) {
-            return null;
+            return "Patient does not have an active booking";
+        }
+        else if (currentBooking.RoomID === roomID) {
+            return "Patient is already booked into this room";
         }
         this.EndBooking(currentBooking.BookingID);
         const newBooking = new Booking(this.bookingRepo.uniqueID(), patientID, roomID, new Date(), null);
-        return this.BookRoom(newBooking);
+        this.BookRoom(newBooking);
     }
 }
 //# sourceMappingURL=BookingService.js.map

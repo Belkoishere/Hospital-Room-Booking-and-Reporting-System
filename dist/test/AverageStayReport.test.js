@@ -59,4 +59,4 @@ test("Average stay report generates correct results", () => {
     const result = report.GenerateReport(request);
     assert.strictEqual(result, 184.33);
 });
-//# sourceMappingURL=AverageStay.test.js.map
+//# sourceMappingURL=AverageStayReport.test.js.map

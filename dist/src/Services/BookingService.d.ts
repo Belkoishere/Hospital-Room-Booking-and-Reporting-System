@@ -7,9 +7,9 @@ export declare class BookingService {
     private readonly pservice;
     private readonly rservice;
     constructor(bookingRepo: BookingRepositoryStrategy, pservice: PatientService, rservice: RoomService);
-    BookRoom(booking: Booking): void | null;
-    ActiveBookingByPatientID(patientID: number): boolean;
-    ActiveBookingByRoomID(roomID: number): boolean;
+    BookRoom(booking: Booking): void | string;
+    ActiveBookingByPatientID(patientID: number): Booking | null;
+    ActiveBookingByRoomID(roomID: number): Booking | null;
     FindByBookingID(bookingID: number): Booking | null;
     FindByPatientID(patientID: number): Booking | null;
     FindByRoomID(roomID: number): Booking | null;
@@ -19,6 +19,6 @@ export declare class BookingService {
     RemoveBooking(BookingID: number): void;
     CancelBooking(bookingID: number): void;
     EndBooking(bookingID: number): void;
-    MovePatient(patientID: number, roomID: number): void | null;
+    MovePatient(patientID: number, roomID: number): void | string;
 }
 //# sourceMappingURL=BookingService.d.ts.map

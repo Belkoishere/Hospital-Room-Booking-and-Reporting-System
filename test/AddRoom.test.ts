@@ -5,39 +5,58 @@ import { Equipment } from "../src/Enumerations/Equipment.js";
 import { RoomSimpleFactory } from "../src/Rooms/RoomSimpleFactory.js";
 import { InMemoryRoomRepository } from "../src/Repositories/RoomRepository/InMemoryRoomRepository.js";
 import { RoomService } from "../src/Services/RoomService.js";
+import { ICUBay } from "../src/Rooms/Rooms.js";
+import { WardBay } from "../src/Rooms/Rooms.js";
 
 
 test("Rooms are instantiated and stored correctly", () => {
+
+    //valid room
     const room1 = RoomSimpleFactory.AddRoom(
     "ICUBay", 
-    {RoomID: 23, 
+    {RoomID: 1, 
     EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]], 
     DailyCost: 20, 
     Status: Status["Available"]});
     
-
+    //valid room
     const room2 = RoomSimpleFactory.AddRoom(
     "WardBay", 
-    {RoomID: 24, 
+    {RoomID: 2, 
     EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]], 
     DailyCost: 25, 
     Status: Status["Available"]});
 
-    // Could easily change repo for example to CsvStudentRepository("students.csv")
+    //double added room
+    const room3 = RoomSimpleFactory.AddRoom(
+    "WardBay", 
+    {RoomID: 2, 
+    EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]], 
+    DailyCost: 25, 
+    Status: Status["Available"]});
+
     const repo = new InMemoryRoomRepository();  
 
-    // The biz level logic - repo is passed in to service (DIP)
     const service = new RoomService(repo);
     service.AddRoom(room1);
     service.AddRoom(room2);
+    service.AddRoom(room3);
 
-    let FindRoom1 = service.FindRoom(23);
-    let FindRoom2 = service.FindRoom(24);
+    
+    assert.strictEqual(service.AddRoom(room3), "Room cannot be added");
+    assert.deepStrictEqual(service.AllRooms(), 
+    [
+        new ICUBay
+        ({RoomID: 1, 
+        EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]], 
+        DailyCost: 20, 
+        Status: Status["Available"]}),
 
-    assert.strictEqual(room1.GetType(), "ICUBay");   
-    assert.strictEqual(room2.GetType(), "WardBay");
-    assert.strictEqual(FindRoom1?.GetType(), "ICUBay");
-    assert.strictEqual(FindRoom2?.GetType(), "WardBay");
-    assert.strictEqual(FindRoom1?.Status, Status["Available"]);
-    assert.strictEqual(FindRoom2?.Status, Status["Available"]);
+        new WardBay 
+        ({RoomID: 2, 
+        EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]], 
+        DailyCost: 25, 
+        Status: Status["Available"]})
+    ]);
+
 });

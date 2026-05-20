@@ -5,7 +5,10 @@ import { Status } from "../Enumerations/Status.js";
 export class RoomService {
   constructor(private readonly repo: RoomRepositoryStrategy) {}
 
-	AddRoom(Room: Room): void {
+	AddRoom(Room: Room): void | string {
+		if (this.FindRoom(Room.RoomID) !== null){
+			return "Room cannot be added";
+		}
 		this.repo.save(Room);
 	}
 
@@ -17,13 +20,18 @@ export class RoomService {
 		return this.repo.read(RoomID);
 	}
 
-	IsAvailable(RoomID: number): Boolean{
-		if(this.FindRoom(RoomID)?.Status == Status["Available"]){
+	IsAvailable(RoomID: number): Boolean | string{
+		const status = this.FindRoom(RoomID)?.Status;
+
+		if (status === Status["Available"]) {
 			return true;
 		}
-		else {
-			return false;
+		else if (status === undefined){
+			return "Room does not exist";
 		}
+
+		return false;
+
 	}
 
 	AllRooms(): Room[]{

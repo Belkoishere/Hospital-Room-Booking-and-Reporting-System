@@ -7,7 +7,7 @@ import { Patient } from "../src/Patients/Patient.js";
 test("Patients are instantiated and stored correctly", () => {
     // Could easily change repo for example to CsvStudentRepository("students.csv")
     const repo = new InMemoryPatientRepository();
-    let patient1 = new Patient(1, "Belko Diallo", new Date("21/02/2006"), new Date("16/05/2026"), null, 5, [Equipment["Bed"], Equipment["InfusionPump"]]);
+    const patient1 = new Patient(1, "Belko Diallo", new Date("21/02/2006"), new Date("16/05/2026"), null, 5, [Equipment["Bed"], Equipment["InfusionPump"]]);
     // The biz level logic - repo is passed in to service (DIP)
     const service = new PatientService(repo);
     service.RegisterPatient(patient1);

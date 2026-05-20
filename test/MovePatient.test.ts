@@ -55,12 +55,11 @@ test("Patient is moved to a new room", () => {
     rservice.AddRoom(room1);
     rservice.AddRoom(room2);
     bservice.BookRoom(booking);
-
     bservice.MovePatient(1, 2);
 
+    assert.strictEqual(bservice.FindByBookingID(2)?.RoomID, 2);
     assert.strictEqual(bservice.FindByBookingID(1)?.RoomID, 1);
     assert.notEqual(bservice.FindByBookingID(1)?.EndDate, null);
-    assert.strictEqual(bservice.FindByBookingID(2)?.RoomID, 2);
 
 });
 

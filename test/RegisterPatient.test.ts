@@ -10,7 +10,7 @@ test("Patients are instantiated and stored correctly", () => {
     // Could easily change repo for example to CsvStudentRepository("students.csv")
     const repo = new InMemoryPatientRepository();  
 
-    let patient1 = new Patient
+    const patient1 = new Patient
     (1, "Belko Diallo", 
     new Date("21/02/2006"),
     new Date("16/05/2026"),
