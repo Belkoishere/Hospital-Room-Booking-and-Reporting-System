@@ -18,7 +18,6 @@ export class BookingService {
             this.pservice.FindPatient(patientID) === null ||
             this.rservice.IsAvailable(roomID) === false ||
             this.FindByBookingID(bookingID) !== null ||
-            //Check if patient already has an active booking
             this.ActiveBookingByPatientID(patientID) !== null ||
             this.ActiveBookingByRoomID(roomID) !== null ||
             this.IsSuitable(roomID, patientID) === false) {
@@ -26,6 +25,7 @@ export class BookingService {
         }
         this.bookingRepo.save(booking);
         this.rservice.UpdateStatus(bookingID, Status["Occupied"]);
+        return "Room booked successfully";
     }
     ActiveBookingByPatientID(patientID) {
         const booking = this.FindByPatientID(patientID);

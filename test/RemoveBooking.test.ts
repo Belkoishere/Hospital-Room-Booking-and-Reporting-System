@@ -12,7 +12,7 @@ import { InMemoryPatientRepository } from "../src/Repositories/PatientRepository
 import { PatientService } from "../src/Services/PatientService.js";
 import { Patient } from "../src/Patients/Patient.js";
 
-test("Book room", () => {
+test("Remove booking", () => {
 
     const brepo = new InMemoryBookingRepository();  
     const prepo = new InMemoryPatientRepository();
@@ -28,16 +28,10 @@ test("Book room", () => {
     const room2 = RoomSimpleFactory.AddRoom(
     "PrivateRoom", 
     {RoomID: 2, 
-    EquipmentList: [Equipment["Bed"], Equipment["Defibrilator"]], 
+    EquipmentList: [Equipment["Bed"], Equipment["IVPole"]], 
     DailyCost: 23, 
     Status: Status["Available"]});
 
-    const room3 = RoomSimpleFactory.AddRoom(
-    "WardBay", 
-    {RoomID: 3, 
-    EquipmentList: [Equipment["Bed"], Equipment["Defibrilator"]], 
-    DailyCost: 23, 
-    Status: Status["Available"]});
 
     const patient1 = new Patient(
     1, 
@@ -64,31 +58,10 @@ test("Book room", () => {
     null
     ); 
 
-    //double booking
+    //valid booking
     const booking2 = new Booking
-    (1, 1, 1,
-    new Date("2026-05-18"),
-    null
-    ); 
-
-    //Inapropriate clinical needs to room equipment booking
-    const booking3 = new Booking
     (2, 2, 2,
-    new Date("2026-05-18"),
-    null
-    ); 
-
-    //Multiple bookings for patient1
-    const booking4 = new Booking
-    (3, 1, 3,
-    new Date("2026-05-18"),
-    null
-    ); 
-
-    //Booking with non existent room and patient
-    const booking5 = new Booking
-    (4, 4, 4,
-    new Date("2026-05-18"),
+    new Date("2026-05-13"),
     null
     ); 
 
@@ -100,21 +73,11 @@ test("Book room", () => {
     pservice.RegisterPatient(patient2);
     rservice.AddRoom(room1);
     rservice.AddRoom(room2);
-    rservice.AddRoom(room3);
     bservice.BookRoom(booking1);
+    bservice.BookRoom(booking2);
+    bservice.RemoveBooking(1);
 
-    //booking2 cannot be booked as an identical booking1 was already booked
-    assert.strictEqual(bservice.BookRoom(booking2), "Can't book room");
-    //booking3 cannot be booked due to clinical needs to room equipment mismatch
-    assert.strictEqual(bservice.BookRoom(booking3), "Can't book room");
-    //booking1 is booked
-    assert.deepStrictEqual(bservice.All(), [new Booking(1, 1, 1, new Date("2026-05-18"), null)]);
-    //booking 4 cannot be booked as it involves a patient who already has a booking
-    assert.strictEqual(bservice.BookRoom(booking4), "Can't book room");
-    //When rooms are booked their status is changed to "Occupied" (0)
-    assert.strictEqual(rservice.FindRoom(1)?.Status, 0);
-    //Booking with non existent room and patient cannot be booked
-    assert.strictEqual(bservice.BookRoom(booking5), "Can't book room");
+    assert.deepStrictEqual(bservice.All(), [new Booking(2, 2, 2, new Date("2026-05-13"), null)]);
 
 });
 

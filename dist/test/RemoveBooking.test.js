@@ -11,34 +11,34 @@ import { RoomSimpleFactory } from "../src/Rooms/RoomSimpleFactory.js";
 import { InMemoryPatientRepository } from "../src/Repositories/PatientRepository/InMemoryPatientRepository.js";
 import { PatientService } from "../src/Services/PatientService.js";
 import { Patient } from "../src/Patients/Patient.js";
-test("Move patient", () => {
+test("Remove booking", () => {
     const brepo = new InMemoryBookingRepository();
     const prepo = new InMemoryPatientRepository();
     const rrepo = new InMemoryRoomRepository();
-    const pservice = new PatientService(prepo);
-    const rservice = new RoomService(rrepo);
-    const bservice = new BookingService(brepo, pservice, rservice);
     const room1 = RoomSimpleFactory.AddRoom("WardBay", { RoomID: 1,
         EquipmentList: [Equipment["Bed"], Equipment["Defibrilator"], Equipment["IVPole"]],
         DailyCost: 23,
         Status: Status["Available"] });
-    const room2 = RoomSimpleFactory.AddRoom("IsolationRoom", { RoomID: 2,
-        EquipmentList: [Equipment["Bed"], Equipment["Defibrilator"]],
-        DailyCost: 14,
+    const room2 = RoomSimpleFactory.AddRoom("PrivateRoom", { RoomID: 2,
+        EquipmentList: [Equipment["Bed"], Equipment["IVPole"]],
+        DailyCost: 23,
         Status: Status["Available"] });
-    const patient = new Patient(1, "Belko Diallo", new Date("21/02/2006"), new Date("17/05/2026"), null, 23, [Equipment["Bed"], Equipment["Defibrilator"]]);
-    const booking = new Booking(1, 1, 1, new Date(), null);
-    pservice.RegisterPatient(patient);
+    const patient1 = new Patient(1, "Belko Diallo", new Date("2006-02-21"), new Date("2026-05-17"), null, 23, [Equipment["Bed"], Equipment["Defibrilator"]]);
+    const patient2 = new Patient(2, "Abdoul Aziz", new Date("2006-02-21"), new Date("2026-05-17"), null, 23, [Equipment["Bed"], Equipment["IVPole"]]);
+    //valid booking
+    const booking1 = new Booking(1, 1, 1, new Date("2026-05-18"), null);
+    //valid booking
+    const booking2 = new Booking(2, 2, 2, new Date("2026-05-13"), null);
+    const pservice = new PatientService(prepo);
+    const rservice = new RoomService(rrepo);
+    const bservice = new BookingService(brepo, pservice, rservice);
+    pservice.RegisterPatient(patient1);
+    pservice.RegisterPatient(patient2);
     rservice.AddRoom(room1);
     rservice.AddRoom(room2);
-    bservice.BookRoom(booking);
-    bservice.MovePatient(1, 2);
-    //A new booking is created with the new room
-    assert.strictEqual(bservice.FindByBookingID(2)?.RoomID, 2);
-    assert.strictEqual(bservice.FindByBookingID(1)?.RoomID, 1);
-    //The old room's status is changed to "Available" (1)
-    assert.strictEqual(rservice.FindRoom(1)?.Status, 1);
-    //The old booking's end date is set
-    assert.notEqual(bservice.FindByBookingID(1)?.EndDate, null);
+    bservice.BookRoom(booking1);
+    bservice.BookRoom(booking2);
+    bservice.RemoveBooking(1);
+    assert.deepStrictEqual(bservice.All(), [new Booking(2, 2, 2, new Date("2026-05-13"), null)]);
 });
-//# sourceMappingURL=MovePatient.test.js.map
+//# sourceMappingURL=RemoveBooking.test.js.map

@@ -4,12 +4,12 @@ import { Status } from "../Enumerations/Status.js";
 export declare class RoomService {
     private readonly repo;
     constructor(repo: RoomRepositoryStrategy);
-    AddRoom(Room: Room): void | string;
-    RemoveRoom(RoomID: number): void;
+    AddRoom(Room: Room): string;
+    RemoveRoom(RoomID: number): string;
     FindRoom(RoomID: number): Room | null;
     IsAvailable(RoomID: number): Boolean | string;
     AllRooms(): Room[];
-    UpdateStatus(RoomID: number, NewStatus: Status): void;
-    RemoveAllRooms(): void;
+    UpdateStatus(RoomID: number, NewStatus: Status): string;
+    RemoveAllRooms(): string;
 }
 //# sourceMappingURL=RoomService.d.ts.map

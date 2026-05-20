@@ -9,9 +9,11 @@ export class RoomService {
             return "Room cannot be added";
         }
         this.repo.save(Room);
+        return "Room added";
     }
     RemoveRoom(RoomID) {
         this.repo.delete(RoomID);
+        return "Room removed";
     }
     FindRoom(RoomID) {
         return this.repo.read(RoomID);
@@ -30,10 +32,12 @@ export class RoomService {
         return this.repo.all();
     }
     UpdateStatus(RoomID, NewStatus) {
-        return this.repo.updateStatus(RoomID, NewStatus);
+        this.repo.updateStatus(RoomID, NewStatus);
+        return "Room status updated";
     }
     RemoveAllRooms() {
         this.repo.deleteAll();
+        return "All rooms removed";
     }
 }
 //# sourceMappingURL=RoomService.js.map

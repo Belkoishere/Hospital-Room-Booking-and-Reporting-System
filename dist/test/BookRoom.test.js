@@ -11,7 +11,7 @@ import { RoomSimpleFactory } from "../src/Rooms/RoomSimpleFactory.js";
 import { InMemoryPatientRepository } from "../src/Repositories/PatientRepository/InMemoryPatientRepository.js";
 import { PatientService } from "../src/Services/PatientService.js";
 import { Patient } from "../src/Patients/Patient.js";
-test("Room booking works correctly", () => {
+test("Book room", () => {
     const brepo = new InMemoryBookingRepository();
     const prepo = new InMemoryPatientRepository();
     const rrepo = new InMemoryRoomRepository();

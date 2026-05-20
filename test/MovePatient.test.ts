@@ -13,7 +13,7 @@ import { PatientService } from "../src/Services/PatientService.js";
 import { Patient } from "../src/Patients/Patient.js";
 
 
-test("Patient is moved to a new room", () => {
+test("Move patient", () => {
     const brepo = new InMemoryBookingRepository();
     const prepo = new InMemoryPatientRepository();
     const rrepo = new InMemoryRoomRepository();

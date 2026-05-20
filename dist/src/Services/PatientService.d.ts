@@ -3,10 +3,10 @@ import { Patient } from "../Patients/Patient.js";
 export declare class PatientService {
     private readonly repo;
     constructor(repo: PatientRepositoryStrategy);
-    RegisterPatient(Patient: Patient): void;
+    RegisterPatient(Patient: Patient): string;
     FindPatient(PatientID: number): Patient | null;
-    RemovePatient(PatientID: number): void;
-    All(): Patient[];
-    RemoveAllPatients(): void;
+    RemovePatient(PatientID: number): string;
+    AllPatients(): Patient[];
+    RemoveAllPatients(): string;
 }
 //# sourceMappingURL=PatientService.d.ts.map

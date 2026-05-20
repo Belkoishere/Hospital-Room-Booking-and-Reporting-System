@@ -8,7 +8,7 @@ import { RoomService } from "../src/Services/RoomService.js";
 import { RoomContext } from "../src/Reports/RoomContext.js";
 import { Status } from "../src/Enumerations/Status.js";
 import { RoomSimpleFactory } from "../src/Rooms/RoomSimpleFactory.js";
-test("Room occupancy report generates results correctly", () => {
+test("Room occupancy report", () => {
     // Could easily change repo for example to CsvStudentRepository("students.csv")
     const repo = new InMemoryRoomRepository();
     const room1 = RoomSimpleFactory.AddRoom("ICUBay", { RoomID: 23,

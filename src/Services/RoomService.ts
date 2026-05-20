@@ -5,15 +5,20 @@ import { Status } from "../Enumerations/Status.js";
 export class RoomService {
   constructor(private readonly repo: RoomRepositoryStrategy) {}
 
-	AddRoom(Room: Room): void | string {
+	AddRoom(Room: Room): string {
 		if (this.FindRoom(Room.RoomID) !== null){
 			return "Room cannot be added";
 		}
+
 		this.repo.save(Room);
+
+		return "Room added";
 	}
 
-	RemoveRoom(RoomID: number): void {
-		this.repo.delete(RoomID)
+	RemoveRoom(RoomID: number): string {
+		this.repo.delete(RoomID);
+
+		return "Room removed";
 	}
 
 	FindRoom(RoomID: number): Room | null {
@@ -31,19 +36,22 @@ export class RoomService {
 		}
 
 		return false;
-
 	}
 
 	AllRooms(): Room[]{
 		return this.repo.all();
 	}
 
-	UpdateStatus(RoomID: number, NewStatus: Status): void{
-		return this.repo.updateStatus(RoomID, NewStatus);
+	UpdateStatus(RoomID: number, NewStatus: Status): string{
+		this.repo.updateStatus(RoomID, NewStatus);
+
+		return "Room status updated";
 	}
 
-	RemoveAllRooms(): void{
+	RemoveAllRooms(): string{
 		this.repo.deleteAll();
+
+		return "All rooms removed";
 	}
 
 }

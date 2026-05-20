@@ -9,7 +9,7 @@ import { Patient } from "../src/Patients/Patient.js";
 import { PatientContext } from "../src/Reports/PatientContext.js";
 
 
-test("Patient numbers report generates results correctly", () => {
+test("Patient numbers report", () => {
     
     const repo = new InMemoryPatientRepository();  
 

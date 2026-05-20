@@ -8,7 +8,7 @@ export class PatientNumbersReport extends Report {
 
   protected run(params: Map<string, any>): number | null {
     const type = params.get("Type");
-    const all = this.pservice.All();
+    const all = this.pservice.AllPatients();
 
     switch (type) {
       case "All":

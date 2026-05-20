@@ -16,7 +16,7 @@ import { ReportRequest } from "../src/Reports/ReportRequest.js";
 import { ReportSimpleFactory } from "../src/Reports/ReportSimpleFactory.js";
 import { BookingContext} from "../src/Reports/BookingContext.js";
 
-test("Average stay report generates correct results", () => {
+test("Average stay report", () => {
 
     const room1 = RoomSimpleFactory.AddRoom(
     "ICUBay", 

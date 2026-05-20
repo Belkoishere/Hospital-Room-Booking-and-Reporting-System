@@ -7,19 +7,12 @@ import { InMemoryRoomRepository } from "../src/Repositories/RoomRepository/InMem
 import { RoomService } from "../src/Services/RoomService.js";
 import { ICUBay } from "../src/Rooms/Rooms.js";
 import { WardBay } from "../src/Rooms/Rooms.js";
-test("Add room", () => {
-    //valid room
+test("Remove room", () => {
     const room1 = RoomSimpleFactory.AddRoom("ICUBay", { RoomID: 1,
         EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
         DailyCost: 20,
         Status: Status["Available"] });
-    //valid room
     const room2 = RoomSimpleFactory.AddRoom("WardBay", { RoomID: 2,
-        EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
-        DailyCost: 25,
-        Status: Status["Available"] });
-    //double added room
-    const room3 = RoomSimpleFactory.AddRoom("WardBay", { RoomID: 2,
         EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
         DailyCost: 25,
         Status: Status["Available"] });
@@ -27,19 +20,10 @@ test("Add room", () => {
     const service = new RoomService(repo);
     service.AddRoom(room1);
     service.AddRoom(room2);
-    service.AddRoom(room3);
-    // Rooms cannot be double added
-    assert.strictEqual(service.AddRoom(room3), "Room cannot be added");
-    // Two rooms are successfully added
-    assert.deepStrictEqual(service.AllRooms(), [
-        new ICUBay({ RoomID: 1,
-            EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
-            DailyCost: 20,
-            Status: Status["Available"] }),
-        new WardBay({ RoomID: 2,
+    service.RemoveRoom(1);
+    assert.deepStrictEqual(service.AllRooms(), [new WardBay({ RoomID: 2,
             EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
             DailyCost: 25,
-            Status: Status["Available"] })
-    ]);
+            Status: Status["Available"] })]);
 });
-//# sourceMappingURL=AddRoom.test.js.map
+//# sourceMappingURL=RemoveRoom.test.js.map

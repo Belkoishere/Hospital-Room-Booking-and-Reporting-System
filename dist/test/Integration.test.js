@@ -70,6 +70,7 @@ test("Integration test", () => {
     bservice.BookRoom(booking3);
     bservice.BookRoom(booking4);
     bservice.MovePatient(1, 5);
+    //Generate reports
     const rcontext = new RoomContext(rservice);
     const bcontext = new BookingContext(bservice);
     const pcontext = new PatientContext(pservice);
@@ -89,6 +90,7 @@ test("Integration test", () => {
     const request4 = new ReportRequest("AverageStay", params4);
     const report4 = ReportSimpleFactory.CreateReport(request4, [bcontext, pcontext]);
     const result4 = report4.GenerateReport(request4);
+    //tests
     strictEqual(result1, 80);
     strictEqual(result2, 4);
     strictEqual(result3[0].RoomID, 1);

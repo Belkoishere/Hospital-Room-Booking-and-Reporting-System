@@ -9,7 +9,7 @@ import { RoomContext } from "../src/Reports/RoomContext.js";
 import { Status } from "../src/Enumerations/Status.js";
 import { RoomSimpleFactory } from "../src/Rooms/RoomSimpleFactory.js";
 import { ICUBay } from "../src/Rooms/Rooms.js";
-test("Available rooms report generates results correctly", () => {
+test("Available rooms report", () => {
     const repo = new InMemoryRoomRepository();
     const room1 = RoomSimpleFactory.AddRoom("ICUBay", { RoomID: 23,
         EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],

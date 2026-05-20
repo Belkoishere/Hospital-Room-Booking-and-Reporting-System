@@ -15,7 +15,7 @@ import { RoomContext } from "../src/Reports/RoomContext.js";
 import { ReportRequest } from "../src/Reports/ReportRequest.js";
 import { ReportSimpleFactory } from "../src/Reports/ReportSimpleFactory.js";
 import { BookingContext } from "../src/Reports/BookingContext.js";
-test("Average stay report generates correct results", () => {
+test("Average stay report", () => {
     const room1 = RoomSimpleFactory.AddRoom("ICUBay", { RoomID: 1,
         EquipmentList: [Equipment["Bed"], Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
         DailyCost: 20,

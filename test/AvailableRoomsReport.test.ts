@@ -12,7 +12,7 @@ import { ICUBay } from "../src/Rooms/Rooms.js";
 
 
 
-test("Available rooms report generates results correctly", () => {
+test("Available rooms report", () => {
     
     const repo = new InMemoryRoomRepository();  
 

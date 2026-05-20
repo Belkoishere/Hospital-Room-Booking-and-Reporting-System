@@ -7,7 +7,7 @@ export declare class BookingService {
     private readonly pservice;
     private readonly rservice;
     constructor(bookingRepo: BookingRepositoryStrategy, pservice: PatientService, rservice: RoomService);
-    BookRoom(booking: Booking): void | string;
+    BookRoom(booking: Booking): string;
     ActiveBookingByPatientID(patientID: number): Booking | null;
     ActiveBookingByRoomID(roomID: number): Booking | null;
     FindByBookingID(bookingID: number): Booking | null;

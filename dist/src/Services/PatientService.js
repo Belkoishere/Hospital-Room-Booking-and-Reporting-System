@@ -5,18 +5,21 @@ export class PatientService {
     }
     RegisterPatient(Patient) {
         this.repo.save(Patient);
+        return "Patient registered";
     }
     FindPatient(PatientID) {
         return this.repo.read(PatientID);
     }
     RemovePatient(PatientID) {
         this.repo.delete(PatientID);
+        return "Patient" + PatientID.toString() + " removed";
     }
-    All() {
+    AllPatients() {
         return this.repo.all();
     }
     RemoveAllPatients() {
         this.repo.deleteAll();
+        return "All patients removed";
     }
 }
 //# sourceMappingURL=PatientService.js.map
