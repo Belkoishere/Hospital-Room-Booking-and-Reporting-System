@@ -10,9 +10,10 @@ Room management:
 - Adding room types
 
 Room booking:
-Room suitability determines whether a room is suitable
+- Room suitability determines whether a room is suitable
 or not for a patient, a patient may not be booked into a room 
 that is unsuitable.
+- Patients can be moved from one room to another
 
 Patient management:
 - Registering patients
