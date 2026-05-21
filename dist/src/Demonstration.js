@@ -67,6 +67,7 @@ bservice.BookRoom(booking2);
 bservice.BookRoom(booking3);
 bservice.BookRoom(booking4);
 bservice.MovePatient(1, 5);
+//Generate reports, a simpler solution should be implmented in the future
 const rcontext = new RoomContext(rservice);
 const bcontext = new BookingContext(bservice);
 const pcontext = new PatientContext(pservice);
@@ -86,6 +87,7 @@ const params4 = new Map([["Type", "All"]]);
 const request4 = new ReportRequest("AverageStay", params4);
 const report4 = ReportSimpleFactory.CreateReport(request4, [bcontext, pcontext]);
 const result4 = report4.GenerateReport(request4);
+//Output report results
 console.log("Room occupancy: " + result1.toString() + "%");
 console.log("Number of patients: " + result2.toString());
 console.log("Available rooms: " + result3.toString());

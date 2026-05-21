@@ -12,6 +12,7 @@ test("Patient numbers report", () => {
     let patient1 = new Patient(1, "Belko Diallo", new Date(), new Date(), null, 5, [Equipment["Bed"], Equipment["InfusionPump"]]);
     let patient2 = new Patient(2, "Belko Diallo", new Date(), new Date(), null, 5, [Equipment["Bed"], Equipment["InfusionPump"]]);
     const service = new PatientService(repo);
+    //register 2 patients
     service.RegisterPatient(patient1);
     service.RegisterPatient(patient2);
     const context = new PatientContext(service);

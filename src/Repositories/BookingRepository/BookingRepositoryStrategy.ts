@@ -1,7 +1,7 @@
 import { Booking } from "../../Bookings/Booking.js";
 import { Status } from "../../Enumerations/Status.js";
 
-// StudentRepository.ts
+// Defines methods for all booking storage methods to implement
 export interface BookingRepositoryStrategy {
   save(Booking: Booking): void;
   readByBookingID(BookingID: number): Booking | null;

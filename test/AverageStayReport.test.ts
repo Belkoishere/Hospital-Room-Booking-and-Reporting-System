@@ -18,6 +18,7 @@ import { BookingContext} from "../src/Reports/BookingContext.js";
 
 test("Average stay report", () => {
 
+    //Available rooms to be booked
     const room1 = RoomSimpleFactory.AddRoom(
     "ICUBay", 
     {RoomID: 1, 
@@ -39,6 +40,7 @@ test("Average stay report", () => {
     DailyCost: 25, 
     Status: Status["Available"]});
 
+    //Patients to be booked into rooms
     const patient1 = new Patient
     (1, "Belko Diallo", 
     new Date("21/02/2006"),
@@ -83,10 +85,12 @@ test("Average stay report", () => {
     pservice.RegisterPatient(patient2);
     pservice.RegisterPatient(patient3);
 
+    //Book patients into rooms
     bservice.BookRoom(booking1);
     bservice.BookRoom(booking2);
     bservice.BookRoom(booking3);
 
+    //Generate room occupancy report
     const rcontext = new RoomContext(rservice);
     const bcontext = new BookingContext(bservice);
     

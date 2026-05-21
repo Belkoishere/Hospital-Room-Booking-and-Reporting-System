@@ -16,6 +16,7 @@ import { ReportRequest } from "../src/Reports/ReportRequest.js";
 import { ReportSimpleFactory } from "../src/Reports/ReportSimpleFactory.js";
 import { BookingContext } from "../src/Reports/BookingContext.js";
 test("Average stay report", () => {
+    //Available rooms to be booked
     const room1 = RoomSimpleFactory.AddRoom("ICUBay", { RoomID: 1,
         EquipmentList: [Equipment["Bed"], Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
         DailyCost: 20,
@@ -28,6 +29,7 @@ test("Average stay report", () => {
         EquipmentList: [Equipment["Bed"], Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
         DailyCost: 25,
         Status: Status["Available"] });
+    //Patients to be booked into rooms
     const patient1 = new Patient(1, "Belko Diallo", new Date("21/02/2006"), new Date("16/05/2026"), null, 5, [Equipment["Bed"], Equipment["InfusionPump"]]);
     const patient2 = new Patient(2, "John Doe", new Date("21/02/2006"), new Date("16/05/2026"), null, 5, [Equipment["Bed"], Equipment["InfusionPump"]]);
     const patient3 = new Patient(3, "Kylian Mbappe", new Date("21/02/2006"), new Date("16/05/2026"), null, 5, [Equipment["Bed"], Equipment["InfusionPump"]]);
@@ -46,9 +48,11 @@ test("Average stay report", () => {
     pservice.RegisterPatient(patient1);
     pservice.RegisterPatient(patient2);
     pservice.RegisterPatient(patient3);
+    //Book patients into rooms
     bservice.BookRoom(booking1);
     bservice.BookRoom(booking2);
     bservice.BookRoom(booking3);
+    //Generate room occupancy report
     const rcontext = new RoomContext(rservice);
     const bcontext = new BookingContext(bservice);
     const params = new Map([["Type", "All"]]);

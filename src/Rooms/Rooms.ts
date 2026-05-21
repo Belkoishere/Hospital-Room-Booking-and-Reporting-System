@@ -13,17 +13,18 @@ export abstract class Room {
     Object.assign(this, RoomConfig);
   }
 
+  //Return room type through a method to enforce encapsulation
   abstract GetType(): string;
 }
 
-// Circle class derived from Shape base class
+//Concrete rooms defined from Room
+
 export class ICUBay extends Room {
   GetType(): string {
     return "ICUBay";
   }
 }
 
-// Square class derived from Shape base class
 export class IsolationRoom extends Room {
   GetType(): string {
     return "IsolationRoom";

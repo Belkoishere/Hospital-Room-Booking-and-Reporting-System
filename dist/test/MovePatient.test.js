@@ -32,6 +32,7 @@ test("Move patient", () => {
     rservice.AddRoom(room1);
     rservice.AddRoom(room2);
     bservice.BookRoom(booking);
+    //Move patient 1 into room 2
     bservice.MovePatient(1, 2);
     //A new booking is created with the new room
     assert.strictEqual(bservice.FindByBookingID(2)?.RoomID, 2);

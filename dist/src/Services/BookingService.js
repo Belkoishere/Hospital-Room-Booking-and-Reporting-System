@@ -1,5 +1,6 @@
 import { Booking } from "../Bookings/Booking.js";
 import { Status } from "../Enumerations/Status.js";
+//Booking service conatins all operations relevant to the booking domain and makes use of patient and room service for certain operations
 export class BookingService {
     constructor(bookingRepo, pservice, rservice) {
         this.bookingRepo = bookingRepo;

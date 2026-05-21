@@ -16,6 +16,7 @@ test("Available rooms report", () => {
     
     const repo = new InMemoryRoomRepository();  
 
+    //Available room
     const room1 = RoomSimpleFactory.AddRoom(
     "ICUBay", 
     {RoomID: 23, 
@@ -23,6 +24,7 @@ test("Available rooms report", () => {
     DailyCost: 20, 
     Status: Status["Available"]});
     
+    //Out of service room
     const room2 = RoomSimpleFactory.AddRoom(
     "WardBay", 
     {RoomID: 24, 

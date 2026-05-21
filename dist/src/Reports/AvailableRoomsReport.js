@@ -10,9 +10,11 @@ export class AvailableRoomsReport extends Report {
     run(params) {
         const type = params.get("Type");
         const all = this.rservice.AllRooms();
+        // Return all available rooms
         if (type === "All") {
             return all.filter(r => r.Status === Status["Available"]);
         }
+        //Return all available rooms of input type
         return all.filter(r => r.GetType() === type && r.Status === Status["Available"]);
     }
 }

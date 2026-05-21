@@ -3,10 +3,11 @@ import { ICUBay } from "./Rooms.js";
 import { IsolationRoom } from "./Rooms.js";
 import { PrivateRoom } from "./Rooms.js";
 import { WardBay } from "./Rooms.js";
-// Factory for creating shape based objects, e.g. square, circle
+// Factory for creating different room types
 export class RoomSimpleFactory {
+    //Rooms are passed in as a the RoomConfig parameter object to avoid writing out many attributes
     static AddRoom(type, RoomConfig) {
-        // nb: could improve by using a map over switch/case
+        //could improve by using a map over switch/case
         switch (type.toLowerCase()) {
             case "icubay":
                 return new ICUBay(RoomConfig);

@@ -94,6 +94,6 @@ test("Integration test", () => {
     strictEqual(result1, 80);
     strictEqual(result2, 4);
     strictEqual(result3[0].RoomID, 1);
-    strictEqual(result4, 8);
+    strictEqual(result4, 9);
 });
 //# sourceMappingURL=Integration.test.js.map

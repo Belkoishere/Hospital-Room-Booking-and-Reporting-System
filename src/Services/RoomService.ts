@@ -2,6 +2,7 @@ import type { RoomRepositoryStrategy } from "../Repositories/RoomRepository/Room
 import { Room } from "../Rooms/Rooms.js"; 
 import { Status } from "../Enumerations/Status.js";
 
+//Room service conatins all operations relevant to the room domain
 export class RoomService {
   constructor(private readonly repo: RoomRepositoryStrategy) {}
 

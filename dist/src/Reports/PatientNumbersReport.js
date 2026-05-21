@@ -13,6 +13,7 @@ export class PatientNumbersReport extends Report {
                 return all.length;
             case "Discharged":
                 return all.filter(p => p.DischargeDate !== null).length;
+            //Return number of patients that have not been dischraged yet
             case "Current":
                 return all.filter(p => p.DischargeDate === null).length;
             default:

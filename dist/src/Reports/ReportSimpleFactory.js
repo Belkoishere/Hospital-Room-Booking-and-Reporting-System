@@ -5,6 +5,8 @@ import { AvailableRoomsReport } from "./AvailableRoomsReport.js";
 import { PatientNumbersReport } from "./PatientNumbersReport.js";
 import { Report } from "./Report.js";
 export class ReportSimpleFactory {
+    //Pass in context as any type to allow multiple contexts to be passed in as an array
+    //Report request includes report type to select a report to be returned
     static CreateReport(request, context) {
         switch (request.GetReportType()) {
             case "RoomOccupancy":

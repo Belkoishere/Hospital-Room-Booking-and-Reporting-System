@@ -5,13 +5,12 @@ export class Room {
         Object.assign(this, RoomConfig);
     }
 }
-// Circle class derived from Shape base class
+//Concrete rooms defined from Room
 export class ICUBay extends Room {
     GetType() {
         return "ICUBay";
     }
 }
-// Square class derived from Shape base class
 export class IsolationRoom extends Room {
     GetType() {
         return "IsolationRoom";

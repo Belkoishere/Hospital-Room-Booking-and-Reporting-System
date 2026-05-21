@@ -13,7 +13,7 @@ import { RoomSimpleFactory } from "../src/Rooms/RoomSimpleFactory.js";
 
 test("Room occupancy report", () => {
     
-    // Could easily change repo for example to CsvStudentRepository("students.csv")
+    // Could easily change repo that is used
     const repo = new InMemoryRoomRepository();  
 
     const room1 = RoomSimpleFactory.AddRoom(

@@ -14,6 +14,7 @@ import { RoomContext } from "./Reports/RoomContext.js";
 import { ReportRequest } from "./Reports/ReportRequest.js";
 import { BookingContext } from "./Reports/BookingContext.js";
 import { PatientContext } from "./Reports/PatientContext.js";
+
 //Add 5 rooms, book 4 patients to 4 rooms, move 1 patient to another room, generate room occupancy report 
 
 //services and repositories
@@ -138,6 +139,7 @@ bservice.BookRoom(booking4);
 
 bservice.MovePatient(1, 5);
 
+//Generate reports, a simpler solution should be implmented in the future
 const rcontext = new RoomContext(rservice);
 const bcontext = new BookingContext(bservice);
 const pcontext = new PatientContext(pservice);
@@ -162,6 +164,7 @@ const request4 = new ReportRequest("AverageStay", params4);
 const report4 = ReportSimpleFactory.CreateReport(request4, [bcontext, pcontext]);
 const result4 = report4.GenerateReport(request4);
 
+//Output report results
 console.log("Room occupancy: " + result1.toString() + "%");
 console.log("Number of patients: " + result2.toString());
 console.log("Available rooms: " + result3.toString());

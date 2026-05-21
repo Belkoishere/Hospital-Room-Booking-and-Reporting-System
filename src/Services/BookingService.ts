@@ -4,6 +4,7 @@ import type { RoomService } from "./RoomService.js";
 import { Booking } from "../Bookings/Booking.js";
 import { Status } from "../Enumerations/Status.js";
 
+//Booking service conatins all operations relevant to the booking domain and makes use of patient and room service for certain operations
 export class BookingService {
   constructor(
     private readonly bookingRepo: BookingRepositoryStrategy,

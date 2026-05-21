@@ -30,6 +30,8 @@ test("Patient numbers report", () => {
     [Equipment["Bed"], Equipment["InfusionPump"]]); 
 
     const service = new PatientService(repo);
+
+    //register 2 patients
     service.RegisterPatient(patient1);
     service.RegisterPatient(patient2);
 

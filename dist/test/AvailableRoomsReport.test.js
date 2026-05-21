@@ -11,10 +11,12 @@ import { RoomSimpleFactory } from "../src/Rooms/RoomSimpleFactory.js";
 import { ICUBay } from "../src/Rooms/Rooms.js";
 test("Available rooms report", () => {
     const repo = new InMemoryRoomRepository();
+    //Available room
     const room1 = RoomSimpleFactory.AddRoom("ICUBay", { RoomID: 23,
         EquipmentList: [Equipment["InfusionPump"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
         DailyCost: 20,
         Status: Status["Available"] });
+    //Out of service room
     const room2 = RoomSimpleFactory.AddRoom("WardBay", { RoomID: 24,
         EquipmentList: [Equipment["Bed"], Equipment["ECG"], Equipment["Defibrilator"], Equipment["PulseOximeter"]],
         DailyCost: 25,

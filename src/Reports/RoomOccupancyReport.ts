@@ -10,7 +10,8 @@ export class RoomOccupancyReport extends Report {
   protected run(params: Map<string, any>): number | null {
     const type = params.get("Type");
     const AllRooms = this.rservice.AllRooms();
-    
+   
+    //Return percentage of rooms that are occupied for all rooms
     if (type === "All"){
         const occupied = AllRooms.filter(r => r.Status === Status["Occupied"]).length;
         const all = AllRooms.length;
@@ -25,6 +26,7 @@ export class RoomOccupancyReport extends Report {
     const occupied = AllRooms.filter(r => r.GetType() === type && r.Status === Status["Occupied"]).length;
     const all = AllRooms.length;
     
+    //Return percentage of rooms that are occupied for all rooms of input room type
     if (all != 0){
       return Number(((occupied/all)*100).toFixed(2));
     }

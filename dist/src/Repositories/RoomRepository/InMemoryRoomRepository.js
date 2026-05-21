@@ -1,4 +1,5 @@
 import { Room } from "../../Rooms/Rooms.js";
+//A concrete room storage method
 export class InMemoryRoomRepository {
     constructor() {
         this.Rooms = new Map();
