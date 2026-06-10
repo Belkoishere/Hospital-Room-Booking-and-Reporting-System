@@ -127,7 +127,7 @@ export class BookingService {
     }
 
     this.EndBooking(currentBooking.BookingID);
-    this.rservice.UpdateStatus(currentBooking.BookingID, Status["Available"]);
+    this.rservice.UpdateStatus(currentBooking.RoomID, Status["Available"]);
 
     const newBooking = new Booking(
       this.bookingRepo.uniqueID(),
